@@ -21,9 +21,18 @@ pipeline {
             }
         }
 
+        stage('run migrations'){
+            steps{
+                bat "%VENV%\\Scripts\\python manage.py makemigrations"
+                bat "%VENV%\\Scripts\\python manage.py migrate"
+            }
+        }
+
         stage('Run Tests') {
             steps {
                 bat "%VENV%\\Scripts\\python manage.py test myapp.tests.test_views"
+                bat "%VENV%\\Scripts\\python manage.py test myapp.tests.test_models"
+                
             }
         }
     }
