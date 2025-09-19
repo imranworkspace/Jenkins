@@ -1,27 +1,29 @@
-pipeline{
-    agent any{
-        environments{
-            VENV='myenv'
+pipeline {
+    agent any
 
-        }
-        stages{
-            stages('Chekcout Out'){
-                steps{
-                    git branch: 'master',url: 'https://github.com/imranworkspace/Jenkins'
-                }
-            }
-        }
-        stage('SET up myenv'){
-            steps{
-                bat 'python -m venv %myenv%'
-                bat '%myenv%\\Scripts\\python -m pip install --upgrate pip'
-                bat '%myenv%\\Scripts\\pip install -r '
-            }
-        }
+    environment {
+        VENV = "myenv"
     }
-    stage('run the tests'){
-        steps{
-            bat '%myenv%\\Scripts\\python manage.py test myapp.tests.test_views'
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'master', url: 'https://github.com/imranworkspace/Jenkins'
+            }
+        }
+
+        stage('Setup Virtualenv') {
+            steps {
+                bat "python -m venv %VENV%"
+                bat "%VENV%\\Scripts\\python -m pip install --upgrade pip"
+                bat "%VENV%\\Scripts\\pip install -r requirements.txt"
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                bat "%VENV%\\Scripts\\python manage.py test myapp.tests.test_views"
+            }
         }
     }
 }
