@@ -21,7 +21,7 @@ pipeline{
     }
     stage('run the tests'){
         steps{
-            bat '%myenv%\\Scripts\python manage.py test myapp.tests.test_views'
+            bat '%myenv%\\Scripts\\python manage.py test myapp.tests.test_views'
         }
     }
 }
