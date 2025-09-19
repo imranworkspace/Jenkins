@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         VENV = "myenv"
-        PYTHON = "C:\\Python39\\python.exe"   // <-- change this if your Python is installed elsewhere
+        PYTHON = "C:\\Users\\imran\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"   // <-- change this if your Python is installed elsewhere
     }
 
     stages {
