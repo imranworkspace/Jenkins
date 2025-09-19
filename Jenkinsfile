@@ -17,7 +17,7 @@ pipeline {
             steps {
                 bat "%PYTHON% -m venv %VENV%"
                 bat "%VENV%\\Scripts\\python -m pip install --upgrade pip"
-                bat "%VENV%\\Scripts\\pip install -r requirements.txt"
+                bat "%VENV%\\Scripts\\pip install -r requirnments.txt"
             }
         }
 
